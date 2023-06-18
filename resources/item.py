@@ -13,11 +13,11 @@ blp = Blueprint("Items", "items", description="Operations on items")
 class Item(MethodView):
     @blp.response(200, ItemSchema)
     def get(self, item_id):
-        item =  ItemModel.query.get_or_404(item_id)
+        item = ItemModel.query.get_or_404(item_id)
         return item
 
     def delete(self, item_id):
-        item =  ItemModel.query.get_or_404(item_id)
+        item = ItemModel.query.get_or_404(item_id)
         db.session.delete(item)
         db.session.commit()
         return {"message": "Item deleted."}
