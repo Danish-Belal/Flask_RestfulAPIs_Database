@@ -5,3 +5,4 @@ python-dotenv
 marshmallow
 Flask-JWT-Extended
 passlib
+flask_mi
