@@ -26,14 +26,7 @@ def send_simple_message(to, subject, body):
             "text": body,
         },
     )
-@blp.route("/logout")
-class userLogout(MethodView):
-    @jwt_required()
-    def post(self):
-        jti = get_jwt()["jti"]
-        BLOCKLIST.add(jti)
-        return {"massage" : "succesfully logged out"}, 200
-    
+
 @blp.route("/register")
 class UserRegister(MethodView):
     @blp.arguments(UserRegisterSchema)
@@ -60,6 +53,15 @@ class UserRegister(MethodView):
              body=f"Hi {user.username}! You have successfully signed up to the Stores REST API."
         )
         return {"message": "User created successfully." }, 201
+
+@blp.route("/logout")
+class userLogout(MethodView):
+    @jwt_required()
+    def post(self):
+        jti = get_jwt()["jti"]
+        BLOCKLIST.add(jti)
+        return {"massage" : "succesfully logged out"}, 200
+    
 
 
 
